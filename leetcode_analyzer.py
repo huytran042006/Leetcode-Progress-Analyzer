@@ -1,3 +1,10 @@
+"""Tong so bai: 12
+Trung binh: 26 phut/bai
+Easy: 8, Medium: 3, Hard: 1
+Streak hien tai: 4 ngay
+"""
+from datetime import datetime, timedelta
+streak =0
 logs = [
     {"date": "2026-08-24", "problem": "Two Sum", "minutes": 15, "difficulty": "Easy"},
     {"date": "2026-08-25", "problem": "Contains Duplicate", "minutes": 15, "difficulty": "Easy"},
@@ -16,4 +23,28 @@ logs = [
     {"date": "2026-09-07", "problem": "Merge Sorted Array", "minutes": 25, "difficulty": "Easy"},
 ]
 
-print ('Tong So Bai Da Lam:', len(logs))
+def average_time(logs):
+    total_time = sum(log['minutes'] for log in logs)
+    return total_time / len(logs) if logs else 0
+
+def problems_by_difficulty(logs):
+    total_easy = sum(1 for log in logs if log['difficulty'] == 'Easy')
+    total_medium = sum(1 for log in logs if log['difficulty'] == 'Medium')
+    total_hard = sum(1 for log in logs if log['difficulty'] == 'Hard')
+    print(f'Easy: {total_easy}, Medium: {total_medium}, Hard: {total_hard}')
+
+def current_streak(logs):
+    all_dates = [log['date'] for log in logs]
+    streak = 0
+    check_day = datetime.strptime(max(all_dates), "%Y-%m-%d")
+    
+    while check_day.strftime("%Y-%m-%d") in all_dates:
+        streak += 1
+        check_day = check_day - timedelta(days=1)
+    
+    return streak
+
+print('Tong So Bai Da Lam:', len(logs))
+print('Thoi Gian Trung Binh:', int (average_time(logs)), 'phut/bai')
+problems_by_difficulty(logs)
+print('Streak hien tai:',current_streak(logs))
