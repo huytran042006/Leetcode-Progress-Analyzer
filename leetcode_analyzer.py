@@ -1,8 +1,3 @@
-"""Tong so bai: 12
-Trung binh: 26 phut/bai
-Easy: 8, Medium: 3, Hard: 1
-Streak hien tai: 4 ngay
-"""
 from datetime import datetime, timedelta
 streak =0
 logs = [
